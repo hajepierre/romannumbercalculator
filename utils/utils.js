@@ -1,9 +1,4 @@
-const {
-  romanToArab,
-  arabToRoman,
-  isValidArab,
-  isValidRoman
-} = require("roman-numbers");
+const { romanToArab, arabToRoman, isValidRoman } = require("roman-numbers");
 
 const math = require("mathjs");
 
@@ -22,20 +17,24 @@ const specialCharacters = [
   "."
 ];
 
-
 const getContainedSpecialCharacters = text => {
   const result = [];
-  const textChars = text.split("");
 
-  for (let c of textChars) {
-    if (specialCharacters.includes(c)) {
+  for (let c of specialCharacters) {
+    if (text.includes(c)) {
       result.push(c);
     }
   }
   return result;
 };
 
-
+/**
+ * In the opposition of split function which removes the target symbol from the array,
+ * this method will split the string but will keep the target symbol as part of the resulting array
+ *
+ * @param {*} text
+ * @param {*} target
+ */
 const tokenize = (text, target) => {
   const index = text.indexOf(target);
   let result = [];
@@ -62,11 +61,12 @@ const tokenize = (text, target) => {
 const romanToMathExpression = text => {
   //Find contained special characters in the text first
   const symbols = getContainedSpecialCharacters(text);
+
   if (symbols.length > 0) {
     let result = "";
     const specialChar = symbols[0];
     const tokens = tokenize(text, specialChar);
-    console.log(tokens);
+
     for (let t of tokens) {
       if (t === specialChar) {
         result += t;
@@ -88,7 +88,7 @@ const replaceAll = (text, search, target = "") => {
   return text.replace(regex, target);
 };
 
-computeRomanExpression = text => {
+const computeRomanExpression = text => {
   //Remove spaces in the expression first
   text = replaceAll(text, " ");
 
@@ -97,6 +97,7 @@ computeRomanExpression = text => {
 
   //Get Math expression
   const mathExpression = romanToMathExpression(text);
+
   //Evaluation the math expression
   const result = math.evaluate(mathExpression);
 
@@ -104,4 +105,6 @@ computeRomanExpression = text => {
   return arabToRoman(result);
 };
 
-console.log(computeRomanExpression("(XXIV + XI)"));
+module.exports = {
+  computeRomanExpression
+};
