@@ -2,10 +2,39 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <p>Welcome to Roman Number Calculator</p>
+    <br />
+    <form action="/" method="POST">
+      <div>
+        <div>Enter your math expression down here</div>
+        <div>
+          <input
+            type="text"
+            id="expression"
+            name="expression"
+            value=""
+            width="200"
+            height="20"
+          />
+        </div>
+
+        <div>
+          <input type="submit" value="SUBMIT" />
+        </div>
+      </div>
+    </form>
+    <hr />
+    <hr />
+    <div>
+      <div>
+        <strong> RESULT: <%= calc.result %></strong>
+      </div>
+    </div>
+    <hr />
+    <hr />
   </body>
 </html>
