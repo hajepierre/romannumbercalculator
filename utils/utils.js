@@ -19,7 +19,6 @@ const specialCharacters = [
 
 const getContainedSpecialCharacters = text => {
   const result = [];
-
   for (let c of specialCharacters) {
     if (text.includes(c)) {
       result.push(c);
@@ -97,7 +96,6 @@ const computeRomanExpression = text => {
 
   //Get Math expression
   const mathExpression = romanToMathExpression(text);
-
   //Evaluation the math expression
   const result = math.evaluate(mathExpression);
 

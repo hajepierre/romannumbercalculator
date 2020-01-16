@@ -7,3 +7,10 @@ describe("Simple addition", () => {
     assert.equal(result, "XXXV");
   });
 });
+
+describe("Complexe operation", () => {
+  it("It evaluates addition of two numbers", () => {
+    const result = computeRomanExpression("((x*v)+x)/VI-V");
+    assert.equal(result, "V");
+  });
+});
